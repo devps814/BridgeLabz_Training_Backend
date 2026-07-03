@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+ https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+    <!--
+    ══════════════════════════════════════════════════════════════
+    Display Name
+    ══════════════════════════════════════════════════════════════
+    -->
+    <display-name>GreetingWebApp</display-name>
+    <!--
+    ══════════════════════════════════════════════════════════════
+   spring-greeting-webapp-plan-solution.md 2026-06-21
+   15 / 23
+    Servlet Declaration
+    ══════════════════════════════════════════════════════════════
+    Registers GreetingServlet with the servlet container (Tomcat).
+    - <servlet-name> : logical name used for mapping
+    - <servlet-class> : fully qualified class name
+    - <load-on-startup> : 1 means load this servlet when Tomcat starts
+    (not on first request). This ensures Spring
+    context is initialized at startup time.
+    -->
+    <servlet>
+        <servlet-name>GreetingServlet</servlet-name>
+        <servlet-class>com.greet.servlet.GreetingServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--
+    ══════════════════════════════════════════════════════════════
+    Servlet Mapping
+    ══════════════════════════════════════════════════════════════
+    Maps the URL pattern "/greet" to GreetingServlet.
+    When a user submits the form (POST /greet) or navigates to
+    GET /greet, Tomcat routes the request to GreetingServlet.
+    -->
+    <servlet-mapping>
+        <servlet-name>GreetingServlet</servlet-name>
+        <url-pattern>/greet</url-pattern>
+    </servlet-mapping>
+    <!--
+    ══════════════════════════════════════════════════════════════
+    Welcome File
+    ══════════════════════════════════════════════════════════════
+    When the user navigates to the root URL:
+    http://localhost:8080/GreetingWebApp/
+    Tomcat automatically serves index.jsp.
+    -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
